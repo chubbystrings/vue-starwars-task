@@ -13,8 +13,7 @@ const useStarships = () => {
     (async () => {
       isLoading.value = true;
       try {
-
-        const data = await axiosInstance.get('/starships');
+        const data = await axiosInstance.get("/starships");
 
         data.data.results.forEach((item: any, i: number) => {
           const id = item.url.split("/").filter(Number)[0];
