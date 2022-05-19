@@ -49,7 +49,7 @@ import {
 } from "vue";
 import { useRoute } from "vue-router";
 import DashboardTemplate from "@/components/template/DashboardTemplate.vue";
-import axios from "axios";
+import axiosInstance from '@/services/axios'
 import Skeletal from "../components/ui/molecule/SkeletalLoader.vue";
 
 export default defineComponent({
@@ -87,9 +87,8 @@ export default defineComponent({
     onMounted(() => {
       isLoading.value = true;
       (async () => {
-        const url = `https://swapi.dev/api/${route.params.single}/${route.params.id}`;
 
-        const data = await axios.get(url);
+        const data = await axiosInstance.get(`/${route.params.single}/${route.params.id}`);
 
         result.data = { ...data.data };
         isLoading.value = false;

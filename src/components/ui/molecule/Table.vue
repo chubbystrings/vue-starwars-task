@@ -85,11 +85,8 @@
 import { defineComponent, PropType, toRefs, onMounted } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import Skeletal from "./SkeletalLoader.vue";
+import { TABLE} from '@/types'
 
-interface TABLE {
-  header: string[];
-  data: Record<string, any>[];
-}
 
 export default defineComponent({
   props: {
