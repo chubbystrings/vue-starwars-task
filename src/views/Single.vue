@@ -3,7 +3,7 @@
     <template v-slot:table>
       <div class="single--wrapper" v-if="!isLoading">
         <div class="image--wrapper">
-          <img :src="photo" />
+          <img src="/img/svg/film.svg" />
         </div>
         <div class="description" v-if="pageType === 'films'">
           <h2>{{ result.data.title }}</h2>
