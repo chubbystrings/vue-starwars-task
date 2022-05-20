@@ -78,7 +78,7 @@
         </tr>
       </tbody>
     </table>
-    <Skeletal v-else :width="'100%'" :height="pageType === 'Films' ? '400px' : '600px'" />
+    <Skeletal v-else :width="'100%'" :height="pageType === 'Films' ? '400px' : '500px'" />
   </div>
 </template>
 <script lang="ts">
@@ -151,7 +151,7 @@ export default defineComponent({
 
 table td {
   text-align: left;
-  padding: 15px 8px;
+  padding: 13px 8px;
   font-weight: 500;
   font-size: 12px;
   line-height: 24px;
