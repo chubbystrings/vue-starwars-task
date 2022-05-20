@@ -4,7 +4,7 @@
       <thead>
         <tr>
           <th>
-            <input type="checkbox" />
+            <input type="checkbox" className="checkbox" @click="handleCheckAll" />
           </th>
           <th v-for="(item, i) in tableDetails.header" :key="i">{{ item }}</th>
         </tr>
@@ -15,8 +15,8 @@
           :key="i"
           @click="handleClick(item.id)"
         >
-          <td>
-            <input type="checkbox" />
+          <td @click.stop="handleCheckbox">
+            <input type="checkbox" className="checkbox" />
           </td>
           <td>{{ handleLongText(item.title) }}</td>
           <td>{{ item.date }}</td>
@@ -32,8 +32,8 @@
           :key="i"
           @click="handleClick(item.id)"
         >
-          <td>
-            <input type="checkbox" />
+          <td @click.stop="handleCheckbox">
+            <input type="checkbox" className="checkbox"  />
           </td>
           <td>{{ item.name }}</td>
           <td>{{ handleLongText(item.model) }}</td>
@@ -49,8 +49,8 @@
           :key="i"
           @click="handleClick(item.id)"
         >
-          <td>
-            <input type="checkbox" />
+          <td @click.stop="handleCheckbox">
+            <input type="checkbox" className="checkbox" />
           </td>
           <td>{{ item.name }}</td>
           <td>{{ item.birth }}</td>
@@ -66,8 +66,8 @@
           :key="i"
           @click="handleClick(item.id)"
         >
-          <td>
-            <input type="checkbox" />
+          <td @click.stop="handleCheckbox">
+            <input type="checkbox" className="checkbox" />
           </td>
           <td>{{ item.name }}</td>
           <td>{{ item.classification }}</td>
@@ -122,8 +122,18 @@ export default defineComponent({
       );
     };
 
+    const handleCheckAll = (e: any) => {
+      e.target.checked = !e.target.checked
+      const arr = document.querySelectorAll('.checkbox');
+      arr.forEach((el: any) => {
+        el.checked = !el.checked
+      })
+    }
 
-    return { tableDetails, handleClick, handleLongText, pageType, isLoading };
+    const handleCheckbox = () => {}
+
+
+    return { tableDetails, handleClick, handleLongText, pageType, isLoading, handleCheckAll, handleCheckbox  };
   },
 });
 </script>
