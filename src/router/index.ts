@@ -1,57 +1,47 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import Home from '../views/Login.vue'
+import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import Home from "../views/Login.vue";
+import NotFound from "../views/NotFound.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: "/",
+    name: "Home",
+    component: Home,
   },
   {
-    path: '/dashboard',
-    name: 'Dashboard',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Dashboard.vue'),
+    path: "/dashboard",
+    name: "Dashboard",
+    component: () => import("../views/Dashboard.vue"),
   },
   {
-    path: '/dashboard/species',
-    name: 'Species',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Species.vue')
+    path: "/dashboard/species",
+    name: "Species",
+    component: () => import("../views/Species.vue"),
   },
   {
-    path: '/dashboard/people',
-    name: 'People',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/People.vue'),
+    path: "/dashboard/people",
+    name: "People",
+    component: () => import("../views/People.vue"),
   },
 
   {
-    path: '/dashboard/starships',
-    name: 'Starships',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Starships.vue'),
+    path: "/dashboard/starships",
+    name: "Starships",
+    component: () => import("../views/Starships.vue"),
   },
 
   {
-    path: '/dashboard/:single/:id',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Single.vue'),
-    name: 'Single'
-  }
+    path: "/dashboard/:single/:id",
+    component: () => import("../views/Single.vue"),
+    name: "Single",
+  },
 
-]
+  { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;

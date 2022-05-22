@@ -140,6 +140,7 @@ export default defineComponent({
 <style scoped>
 .table--wrapper {
   overflow-x: auto;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .table--wrapper table {

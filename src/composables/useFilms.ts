@@ -2,9 +2,11 @@ import { ref, reactive, onMounted } from "vue";
 import axios from "axios";
 import axiosInstance from "@/services/axios";
 import { TABLE } from "@/types";
+import {useStore} from '@/store';
 
 const useFilms = () => {
   const isLoading = ref(false);
+  const store = useStore()
   const tableData = reactive<TABLE>({
     header: [
       "Film Title",
@@ -111,6 +113,7 @@ const useFilms = () => {
         isLoading.value = false;
       } catch (error) {
         isLoading.value = false;
+        store.setNotification("Oops! cannot retrieve data at the moment try again later");
       }
     })();
   });

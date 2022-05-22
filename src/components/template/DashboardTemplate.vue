@@ -1,13 +1,10 @@
 <template>
-  <div class="dashboard--wrapper">
-    <Sidebar  />
-    <div class="content--wrapper">
-      <Header  />
-      <div class="main--content">
-        <slot name="card"></slot>
-         <h3>{{ title }}</h3>
-        <slot name="table"></slot>
-      </div>
+  <div class="content--wrapper">
+    <Header />
+    <div class="main--content">
+      <slot name="card"></slot>
+      <h3>{{ title }}</h3>
+      <slot name="table"></slot>
     </div>
   </div>
 </template>
@@ -15,7 +12,7 @@
 <script>
 import { defineComponent, toRefs, ref } from "vue";
 import Header from "@/components/ui/molecule/Header.vue";
-import Sidebar from '@/components/ui/molecule/Sidebar.vue'
+
 export default defineComponent({
   props: {
     title: {
@@ -25,13 +22,11 @@ export default defineComponent({
   },
   components: {
     Header,
-    Sidebar
   },
 
   setup(props) {
     const { title } = toRefs(props);
-    const clicked = ref(false)
-
+    const clicked = ref(false);
 
     return { title, clicked };
   },
@@ -39,13 +34,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.dashboard--wrapper {
-  display: grid;
-  grid-template-columns: 0.5fr 2fr;
-  height: 100vh;
-  box-sizing: border-box;
-  width: 100%;
-}
 
 .content--wrapper {
   overflow-x: hidden;
@@ -66,8 +54,14 @@ export default defineComponent({
 }
 
 @media screen and (max-width: 1200px) {
-  .dashboard--wrapper {
+  .auth--dashboard--wrapper {
     grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 365px) {
+  .main--content {
+    padding: 10px;
   }
 }
 </style>

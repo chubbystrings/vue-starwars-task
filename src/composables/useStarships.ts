@@ -1,9 +1,11 @@
 import { ref, reactive, onMounted } from "vue";
 import { TABLE } from "@/types";
 import axiosInstance from "@/services/axios";
+import {useStore} from '@/store';
 
 const useStarships = () => {
   const isLoading = ref(false);
+  const store = useStore()
 
   const tableData = reactive<TABLE>({
     header: ["Name", "Model", "Class", "Passenger", "Length", "Character"],
@@ -33,6 +35,7 @@ const useStarships = () => {
         isLoading.value = false;
       } catch (error) {
         isLoading.value = false;
+        store.setNotification("Oops! cannot retrieve data at the moment try again later");
         console.log(error);
       }
     })();

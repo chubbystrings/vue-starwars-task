@@ -1,9 +1,11 @@
 import { ref, reactive, onMounted } from "vue";
 import axiosInstance from "@/services/axios";
 import { TABLE, DATE_OPTIONS } from "@/types";
+import {useStore} from '@/store';
 
 const useSpecies = () => {
   const isLoading = ref(false);
+  const store = useStore()
   const tableData = reactive<TABLE>({
     header: [
       "Name",
@@ -43,6 +45,7 @@ const useSpecies = () => {
         isLoading.value = false;
       } catch (error) {
         isLoading.value = false;
+        store.setNotification("Oops! cannot retrieve data at the moment try again later");
       }
     })();
   });

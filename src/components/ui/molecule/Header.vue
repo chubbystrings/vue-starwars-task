@@ -4,7 +4,7 @@
       <div>
         <img src="/img/svg/notifications.svg" />
       </div>
-      <div class="account--wrapper">
+      <div class="mobile--account--wrapper">
         <div>
           <img src="/img/svg/account.svg" />
         </div>
@@ -79,12 +79,23 @@ export default defineComponent({
   right: 15px;
   top: 50px;
   width: 100px;
-  height: 150px;
+  max-height: 150px;
   flex-direction: column-reverse;
-  gap: 20px;
+  gap: 10px;
   padding: 10px;
   display: none;
   background: white;
+  z-index: 99;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+.mobile--account--wrapper {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+
+.mobile--account--wrapper small {
+  font-size: 9px;
 }
 
 .back--wrapper {
@@ -139,6 +150,16 @@ export default defineComponent({
   }
   .dropdown {
     display: flex;
+  }
+}
+
+@media screen and (max-width: 250px) {
+  .dot-wrapper {
+    display: none;
+  }
+  .toggle--wrapper {
+    left: initial;
+    right: 5px;
   }
 }
 </style>

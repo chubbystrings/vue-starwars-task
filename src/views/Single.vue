@@ -49,8 +49,9 @@ import {
 } from "vue";
 import { useRoute } from "vue-router";
 import DashboardTemplate from "@/components/template/DashboardTemplate.vue";
-import axiosInstance from '@/services/axios'
+import axiosInstance from "@/services/axios";
 import Skeletal from "../components/ui/molecule/SkeletalLoader.vue";
+import { useStore } from "@/store";
 
 export default defineComponent({
   components: {
@@ -58,6 +59,7 @@ export default defineComponent({
     Skeletal,
   },
   setup() {
+    const store = useStore();
     const route = useRoute();
     const pageType = ref("");
     const result = reactive({
@@ -87,11 +89,19 @@ export default defineComponent({
     onMounted(() => {
       isLoading.value = true;
       (async () => {
+        try {
+          const data = await axiosInstance.get(
+            `/${route.params.single}/${route.params.id}`
+          );
 
-        const data = await axiosInstance.get(`/${route.params.single}/${route.params.id}`);
-
-        result.data = { ...data.data };
-        isLoading.value = false;
+          result.data = { ...data.data };
+          isLoading.value = false;
+        } catch (error) {
+          isLoading.value = false;
+          store.setNotification(
+            "Oops! cannot retrieve data at the moment try again later"
+          );
+        }
       })();
     });
 
@@ -131,15 +141,14 @@ export default defineComponent({
 .description h2 {
   font-weight: 700;
   font-size: 35px;
-  line-height: 24px;
+  line-height: 44px;
 }
 
 .description p {
   font-weight: 400;
   font-size: 14px;
   line-height: 24px;
-  color: #434854
-
+  color: #434854;
 }
 
 @media screen and (max-width: 725px) {
@@ -151,17 +160,25 @@ export default defineComponent({
 }
 
 @media screen and (max-width: 365px) {
+  .description {
+    width: 100%;
+  }
   .image--wrapper {
     width: 100%;
     height: 100%;
   }
 
   .description h2 {
-      font-size: 20px;
+    font-size: 20px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    line-height: 24px;
   }
 
   .description p {
-      font-size: 10px;
+    font-size: 10px;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
 }
 </style>
